@@ -6,12 +6,11 @@ from datetime import datetime, timedelta
 from collections import Counter
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
-
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "default_dev_key")
 # === LinkedIn App Credentials ===
 CLIENT_ID = os.getenv("LINKEDIN_CLIENT_ID")
 CLIENT_SECRET = os.getenv("LINKEDIN_CLIENT_SECRET")
-REDIRECT_URI = "http://localhost:5000/callback"  # Must match app settings
+REDIRECT_URI = os.environ.get("LINKEDIN_REDIRECT_URI", "http://localhost:5000/callback")
 SCOPES = "r_organization_social"  # Developer Tier scope
 
 # LinkedIn OAuth URLs
