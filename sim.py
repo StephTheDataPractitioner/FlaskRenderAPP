@@ -96,20 +96,53 @@ def post_demo():
 @app.route("/submit_post", methods=["POST"])
 def submit_post():
     message = request.form.get("message", "")
-    # Simulated payload
-    simulated_payload = {
+    now = datetime.now()
+
+    # Simulated post payload (not sent to LinkedIn)
+    simulated_post = {
         "author": "urn:li:organization:YOUR_ORG_URN",
-        "lifecycleState": "PUBLISHED",
-        "specificContent": {
-            "com.linkedin.ugc.ShareContent": {
-                "shareCommentary": {"text": message},
-                "shareMediaCategory": "NONE"
-            }
-        },
-        "visibility": {"com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"}
+        "message": message,
+        "timestamp": now.strftime("%Y-%m-%d %H:%M"),
+        "images": ["https://via.placeholder.com/150"]
     }
-    # We just simulate; in real usage, you'd call LinkedIn API here
-    return f"<p>Post simulated! Message length: {len(message)} chars</p><p><a href='/post'>Back</a></p>"
+
+    # Simulated engagement
+    simulated_engagement = [
+        {"member_name": "Alice Johnson", "comment": "Great post!", "reaction": "LIKE",
+         "timestamp": (now - timedelta(minutes=15)).strftime("%Y-%m-%d %H:%M")},
+        {"member_name": "Bob Smith", "comment": "Interesting insight.", "reaction": "LOVE",
+         "timestamp": (now - timedelta(minutes=45)).strftime("%Y-%m-%d %H:%M")},
+        {"member_name": "Carol Lee", "comment": "Thanks for sharing!", "reaction": "WOW",
+         "timestamp": (now - timedelta(minutes=60)).strftime("%Y-%m-%d %H:%M")}
+    ]
+
+    # Aggregate metrics
+    total_likes = sum(1 for e in simulated_engagement if e["reaction"] == "LIKE")
+    total_comments = len(simulated_engagement)
+    total_reactions = len(simulated_engagement)
+
+    # HTML simulation
+    engagement_html = ""
+    for e in simulated_engagement:
+        engagement_html += f"""
+        <div style="border:1px solid #ccc; padding:5px; margin:5px;">
+            <strong>{e['member_name']}</strong> ({e['timestamp']}): {e['comment']}<br>
+            Reaction: {e['reaction']} 
+            <button onclick="alert('Simulated like for {e['member_name']}')">Like</button>
+        </div>
+        """
+
+    post_html = f"""
+    <h2>Post Simulation Complete</h2>
+    <p><strong>Message:</strong> {message}</p>
+    <img src="{simulated_post['images'][0]}" alt="Post image" style="max-width:150px;"><br>
+    <p><strong>Aggregate Metrics:</strong> Likes: {total_likes}, Comments: {total_comments}, Reactions: {total_reactions}</p>
+    <h3>Engagement:</h3>
+    {engagement_html}
+    <p><a href='/post'>Back</a></p>
+    """
+
+    return post_html
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
