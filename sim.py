@@ -289,7 +289,7 @@ def submit_post():
             sharesEl.textContent = Number(sharesEl.textContent) + 1;
             const container = document.getElementById('employee_reshares');
             const now = new Date().toISOString().slice(0,16).replace('T',' ');
-            container.innerHTML += `<div>${name} reshared at ${now}</div>`;
+            container.innerHTML += '<div>' + name + ' reshared at ' + now + '</div>';
             alert(name + ' reshared (simulated).');
           }}
         </script>
