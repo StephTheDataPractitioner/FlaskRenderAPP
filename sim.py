@@ -152,7 +152,7 @@ def submit_post():
     simulated_engagement = [
         {
             "member_name": "Oghenero James",
-            "title": "Data Analyst at StrictData",
+            "title": "Data Engineer at Zenith",
             "profile_url": "https://www.linkedin.com/in/oghenero-james-45883b40/",
             "profile_pic": "https://via.placeholder.com/64.png?text=A",
             "comment": "Great post — very useful!",
@@ -161,7 +161,7 @@ def submit_post():
         },
         {
             "member_name": "Nkechinyere Igwe",
-            "title": "Marketing Lead at StrictData",
+            "title": "Data Analyst at Zenith",
             "profile_url": "https://www.linkedin.com/in/nkechinyereigwe/",
             "profile_pic": "https://via.placeholder.com/64.png?text=B",
             "comment": "Interesting insight, thanks for sharing.",
@@ -170,7 +170,7 @@ def submit_post():
         },
         {
             "member_name": "Rotimi (Rotimi) Obembe",
-            "title": "Software Engineer at StrictData",
+            "title": "Data Engineer at Zenith",
             "profile_url": "https://www.linkedin.com/in/rotimi-obembe-826b52234/",
             "profile_pic": "https://via.placeholder.com/64.png?text=C",
             "comment": "Would love to learn more about this.",
