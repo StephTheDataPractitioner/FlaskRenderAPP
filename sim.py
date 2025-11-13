@@ -151,9 +151,9 @@ def submit_post():
     # Simulated member-level engagement (includes public profile details)
     simulated_engagement = [
         {
-            "member_name": "Alice Johnson",
+            "member_name": "Oghenero James",
             "title": "Data Analyst at StrictData",
-            "profile_url": "https://www.linkedin.com/in/alicejohnson",
+            "profile_url": "https://www.linkedin.com/in/oghenero-james",
             "profile_pic": "https://via.placeholder.com/64.png?text=A",
             "comment": "Great post — very useful!",
             "reaction": "LIKE",
@@ -188,7 +188,7 @@ def submit_post():
 
     # Employee advocacy simulation (list of employees who reshared)
     employees = [
-        {"name": "Dayo Okafor", "profile_url": "#", "title": "Sales Manager"},
+        {"name": "Mimololuwa Emmanuel", "profile_url": "#", "title": "Digital Content Creator"},
         {"name": "Eve Nwosu", "profile_url": "#", "title": "Account Executive"}
     ]
 
