@@ -150,34 +150,35 @@ def submit_post():
 
     # Simulated member-level engagement (includes public profile details)
     simulated_engagement = [
-        {
-            "member_name": "Oghenero James",
-            "title": "Data Engineer at Zenith",
-            "profile_url": "https://www.linkedin.com/in/oghenero-james-45883b40/",
-            "profile_pic": "https://via.placeholder.com/64.png?text=A",
-            "comment": "Great post — very useful!",
-            "reaction": "LIKE",
-            "timestamp": (now - timedelta(minutes=15)).strftime("%Y-%m-%d %H:%M")
-        },
-        {
-            "member_name": "Nkechinyere Igwe",
-            "title": "Data Analyst at Zenith",
-            "profile_url": "https://www.linkedin.com/in/nkechinyereigwe/",
-            "profile_pic": "https://via.placeholder.com/64.png?text=B",
-            "comment": "Interesting insight, thanks for sharing.",
-            "reaction": "LOVE",
-            "timestamp": (now - timedelta(minutes=45)).strftime("%Y-%m-%d %H:%M")
-        },
-        {
-            "member_name": "Rotimi (Rotimi) Obembe",
-            "title": "Data Engineer at Zenith",
-            "profile_url": "https://www.linkedin.com/in/rotimi-obembe-826b52234/",
-            "profile_pic": "https://via.placeholder.com/64.png?text=C",
-            "comment": "Would love to learn more about this.",
-            "reaction": "WOW",
-            "timestamp": (now - timedelta(hours=1, minutes=5)).strftime("%Y-%m-%d %H:%M")
-        }
-    ]
+    {
+        "member_name": "Alex Johnson",
+        "title": "Data Engineer at StrictData",
+        "profile_url": "#",  # fictional placeholder
+        "profile_pic": "https://via.placeholder.com/64.png?text=A",
+        "comment": "Great post — very useful!",
+        "reaction": "LIKE",
+        "timestamp": (now - timedelta(minutes=15)).strftime("%Y-%m-%d %H:%M")
+    },
+    {
+        "member_name": "Maria Okafor",
+        "title": "Data Analyst at StrictData",
+        "profile_url": "#",
+        "profile_pic": "https://via.placeholder.com/64.png?text=B",
+        "comment": "Interesting insight, thanks for sharing.",
+        "reaction": "LOVE",
+        "timestamp": (now - timedelta(minutes=45)).strftime("%Y-%m-%d %H:%M")
+    },
+    {
+        "member_name": "David Chen",
+        "title": "Machine Learning Engineer at StrictData",
+        "profile_url": "#",
+        "profile_pic": "https://via.placeholder.com/64.png?text=C",
+        "comment": "Would love to learn more about this.",
+        "reaction": "WOW",
+        "timestamp": (now - timedelta(hours=1, minutes=5)).strftime("%Y-%m-%d %H:%M")
+    }
+]
+
 
     # Simulated analytics (hardcoded / deterministic for demo)
     impressions = 240 + len(message)  # small deterministic variance
@@ -188,8 +189,8 @@ def submit_post():
 
     # Employee advocacy simulation (list of employees who reshared)
     employees = [
-        {"name": "Mimololuwa Emmanuel", "profile_url": "#", "title": "Digital Content Creator"},
-        {"name": "Eve Nwosu", "profile_url": "#", "title": "Account Executive"}
+        {"name": "Mimolwa Emanuel", "profile_url": "#", "title": "Digital Content Creator"},
+        {"name": "Evee Nwoxsu", "profile_url": "#", "title": "Account Executive"}
     ]
 
     # Render HTML with client-side JS for interactive simulation (no external calls)
