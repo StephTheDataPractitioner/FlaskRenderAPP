@@ -149,35 +149,47 @@ def submit_post():
     }
 
     # Simulated member-level engagement (includes public profile details)
-    simulated_engagement = [
+    # --- Add member IDs for internal linking ---
+now = datetime.now()
+simulated_engagement = [
     {
+        "member_id": 1,
         "member_name": "Alex Johnson",
         "title": "Data Engineer at StrictData",
-        "profile_url": "#",  # fictional placeholder
-        "profile_pic": "https://via.placeholder.com/64.png?text=A",
+        "profile_url": "/profile/1",  # Internal link (not LinkedIn)
+        "profile_pic": "https://via.placeholder.com/80.png?text=AJ",
         "comment": "Great post — very useful!",
         "reaction": "LIKE",
-        "timestamp": (now - timedelta(minutes=15)).strftime("%Y-%m-%d %H:%M")
+        "timestamp": (now - timedelta(minutes=15)).strftime("%Y-%m-%d %H:%M"),
+        "about": "Alex is a data engineer passionate about automating analytics pipelines.",
+        "recent_activity": "Commented on multiple StrictData posts about data pipelines."
     },
     {
+        "member_id": 2,
         "member_name": "Maria Okafor",
         "title": "Data Analyst at StrictData",
-        "profile_url": "#",
-        "profile_pic": "https://via.placeholder.com/64.png?text=B",
+        "profile_url": "/profile/2",
+        "profile_pic": "https://via.placeholder.com/80.png?text=MO",
         "comment": "Interesting insight, thanks for sharing.",
         "reaction": "LOVE",
-        "timestamp": (now - timedelta(minutes=45)).strftime("%Y-%m-%d %H:%M")
+        "timestamp": (now - timedelta(minutes=45)).strftime("%Y-%m-%d %H:%M"),
+        "about": "Maria helps businesses transform raw data into actionable insights.",
+        "recent_activity": "Recently shared a StrictData article on Power BI dashboards."
     },
     {
+        "member_id": 3,
         "member_name": "David Chen",
         "title": "Machine Learning Engineer at StrictData",
-        "profile_url": "#",
-        "profile_pic": "https://via.placeholder.com/64.png?text=C",
+        "profile_url": "/profile/3",
+        "profile_pic": "https://via.placeholder.com/80.png?text=DC",
         "comment": "Would love to learn more about this.",
         "reaction": "WOW",
-        "timestamp": (now - timedelta(hours=1, minutes=5)).strftime("%Y-%m-%d %H:%M")
+        "timestamp": (now - timedelta(hours=1, minutes=5)).strftime("%Y-%m-%d %H:%M"),
+        "about": "David builds scalable ML solutions and contributes to open-source AI projects.",
+        "recent_activity": "Liked StrictData’s post on responsible AI governance."
     }
 ]
+
 
 
     # Simulated analytics (hardcoded / deterministic for demo)
