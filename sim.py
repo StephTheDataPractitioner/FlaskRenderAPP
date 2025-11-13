@@ -150,8 +150,8 @@ def submit_post():
 
     # Simulated member-level engagement (includes public profile details)
     # --- Add member IDs for internal linking ---
-now = datetime.now()
-simulated_engagement = [
+    now = datetime.now()
+    simulated_engagement = [
     {
         "member_id": 1,
         "member_name": "Alex Johnson",
@@ -188,7 +188,7 @@ simulated_engagement = [
         "about": "David builds scalable ML solutions and contributes to open-source AI projects.",
         "recent_activity": "Liked StrictData’s post on responsible AI governance."
     }
-]
+  ]
 
 
 
