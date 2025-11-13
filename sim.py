@@ -153,25 +153,25 @@ def submit_post():
         {
             "member_name": "Oghenero James",
             "title": "Data Analyst at StrictData",
-            "profile_url": "https://www.linkedin.com/in/oghenero-james",
+            "profile_url": "https://www.linkedin.com/in/oghenero-james-45883b40/",
             "profile_pic": "https://via.placeholder.com/64.png?text=A",
             "comment": "Great post — very useful!",
             "reaction": "LIKE",
             "timestamp": (now - timedelta(minutes=15)).strftime("%Y-%m-%d %H:%M")
         },
         {
-            "member_name": "Bob Smith",
+            "member_name": "Nkechinyere Igwe",
             "title": "Marketing Lead at StrictData",
-            "profile_url": "https://www.linkedin.com/in/bobsmith",
+            "profile_url": "https://www.linkedin.com/in/nkechinyereigwe/",
             "profile_pic": "https://via.placeholder.com/64.png?text=B",
             "comment": "Interesting insight, thanks for sharing.",
             "reaction": "LOVE",
             "timestamp": (now - timedelta(minutes=45)).strftime("%Y-%m-%d %H:%M")
         },
         {
-            "member_name": "Carol Lee",
+            "member_name": "Rotimi (Rotimi) Obembe",
             "title": "Software Engineer at StrictData",
-            "profile_url": "https://www.linkedin.com/in/carollee",
+            "profile_url": "https://www.linkedin.com/in/rotimi-obembe-826b52234/",
             "profile_pic": "https://via.placeholder.com/64.png?text=C",
             "comment": "Would love to learn more about this.",
             "reaction": "WOW",
