@@ -1,4 +1,4 @@
-# flask_linkedin_oauth_demo_render_ready_clean.py
+# flask_linkedin_oauth_demo_standard_tier.py
 """
 Render-ready demo app for LinkedIn Standard Tier review screencast.
 - Stores tokens in session only (never prints them).
@@ -14,25 +14,18 @@ import random
 import json
 
 now = datetime.now()
+
+# Simulated engagement using only allowed Standard Tier fields
 simulated_engagement = [
-    {"member_id": 1, "member_name": "Alex Johnson", "title": "Data Engineer at StrictData",
-     "profile_url": "/profile/1", "profile_pic": "https://via.placeholder.com/80.png?text=AJ",
+    {"member_urn": "urn:li:person:XXXX1",
      "comment": "Great post — very useful!", "reaction": "LIKE",
-     "timestamp": (now - timedelta(minutes=15)).strftime("%Y-%m-%d %H:%M"),
-     "about": "Alex is a data engineer passionate about automating analytics pipelines.",
-     "recent_activity": "Commented on multiple StrictData posts about data pipelines."},
-    {"member_id": 2, "member_name": "Maria Okafor", "title": "Data Analyst at StrictData",
-     "profile_url": "/profile/2", "profile_pic": "https://via.placeholder.com/80.png?text=MO",
+     "timestamp": (now - timedelta(minutes=15)).strftime("%Y-%m-%d %H:%M")},
+    {"member_urn": "urn:li:person:XXXX2",
      "comment": "Interesting insight, thanks for sharing.", "reaction": "LOVE",
-     "timestamp": (now - timedelta(minutes=45)).strftime("%Y-%m-%d %H:%M"),
-     "about": "Maria helps businesses transform raw data into actionable insights.",
-     "recent_activity": "Recently shared a StrictData article on Power BI dashboards."},
-    {"member_id": 3, "member_name": "David Chen", "title": "Machine Learning Engineer at StrictData",
-     "profile_url": "/profile/3", "profile_pic": "https://via.placeholder.com/80.png?text=DC",
+     "timestamp": (now - timedelta(minutes=45)).strftime("%Y-%m-%d %H:%M")},
+    {"member_urn": "urn:li:person:XXXX3",
      "comment": "Would love to learn more about this.", "reaction": "WOW",
-     "timestamp": (now - timedelta(hours=1, minutes=5)).strftime("%Y-%m-%d %H:%M"),
-     "about": "David builds scalable ML solutions and contributes to open-source AI projects.",
-     "recent_activity": "Liked StrictData’s post on responsible AI governance."}
+     "timestamp": (now - timedelta(hours=1, minutes=5)).strftime("%Y-%m-%d %H:%M")}
 ]
 
 app = Flask(__name__)
@@ -135,24 +128,24 @@ def submit_post():
     comments = len(simulated_engagement)
     shares = random.randint(1, 6)
     engagement_rate = round((likes + comments + shares) / impressions * 100, 2)
-    employees = [{"name": "Mimolwa Emanuel", "profile_url": "#", "title": "Digital Content Creator"},
-                 {"name": "Evee Nwoxsu", "profile_url": "#", "title": "Account Executive"}]
 
+    # Anonymized employee advocacy
+    employees = [{"name": "Employee 1"}, {"name": "Employee 2"}]
+
+    # Member-level engagement display (Standard Tier compliant)
     engagement_items_html = "".join(
         f'''
         <div class="eng-item" id="eng-{idx}" style="border:1px solid #ddd;padding:8px;margin:8px 0;border-radius:6px;">
-            <img src="{e['profile_pic']}" width="48" height="48" style="border-radius:50%;margin-right:8px;">
-            <a href="{e['profile_url']}"><strong>{e['member_name']}</strong></a>
-            <em style="color:gray"> — {e['title']}</em>
+            <strong>LinkedIn Member</strong> <small>({e['member_urn']})</small>
             <div>{e['comment']}</div>
             <div><small>{e['timestamp']}</small> — Reaction: <strong>{e['reaction']}</strong>
             <button onclick="simulateLike('{idx}')">Like</button>
-            <button onclick="simulateViewProfile('{idx}')">View profile</button>
-            <button onclick="simulateReply('{idx}')">Reply</button></div>
+            </div>
         </div>''' for idx, e in enumerate(simulated_engagement)
     )
+
     employees_html = "".join(
-        f"<li>{emp['name']} — <small>{emp['title']}</small> <button onclick='simulateEmployeeReshare(\"{emp['name']}\")'>Simulate Reshare</button></li>"
+        f"<li>{emp['name']} <button onclick='simulateEmployeeReshare(\"{emp['name']}\")'>Simulate Reshare</button></li>"
         for emp in employees
     )
 
@@ -177,59 +170,29 @@ def submit_post():
             </ul>
           </div>
         </div>
-        <h3>Member-level Engagement (simulated)</h3>
+        <h3>Member-level Engagement (simulated, Standard Tier compliant)</h3>
         <div id="engagement_list">{engagement_items_html}</div>
         <h3>Employee Advocacy (simulated)</h3>
         <ul id="employee_list">{employees_html}</ul>
         <div id="employee_reshares" style="margin-top:8px;color:green;"></div>
-        <p style="color:gray">This is a simulated UI; no real LinkedIn write is performed.</p>
+        <p style="color:gray">
+          This is a simulated UI; no real LinkedIn write is performed.
+          Only comment text, timestamp, reaction type, and anonymized member identifier are shown.
+        </p>
         <p><a href="/post">Back to Post composer</a> | <a href="/">Home</a></p>
         <script>
           function simulateLike(idx) {{
             document.getElementById('likes').textContent = Number(document.getElementById('likes').textContent)+1;
             alert('Simulated like recorded (client-side).');
           }}
-          function simulateViewProfile(idx) {{
-            const el=document.getElementById('eng-'+idx); const a=el.querySelector('a'); if(a) window.open(a.href,'_blank');
-          }}
-          function simulateReply(idx){{
-            const c=prompt('Type your reply (simulated):'); if(c){{
-              document.getElementById('comments').textContent=Number(document.getElementById('comments').textContent)+1;
-              alert('Simulated reply added: '+c);
-            }}
-          }}
           function simulateEmployeeReshare(name){{
-            document.getElementById('shares').textContent=Number(document.getElementById('shares').textContent)+1;
+            document.getElementById('shares').textContent = Number(document.getElementById('shares').textContent)+1;
             const container=document.getElementById('employee_reshares');
             const now=new Date().toISOString().slice(0,16).replace('T',' ');
             container.innerHTML+='<div>'+name+' reshared at '+now+'</div>';
             alert(name+' reshared (simulated).');
           }}
         </script>
-      </body>
-    </html>
-    """
-
-@app.route("/profile/<int:member_id>")
-def profile(member_id):
-    member = next((m for m in simulated_engagement if m["member_id"] == member_id), None)
-    if not member:
-        return "<h3>Member not found</h3><p><a href='/post'>Back to Post</a></p>", 404
-    return f"""
-    <html>
-      <head><title>{member['member_name']} — Profile</title><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-      <body style="font-family:Arial,Helvetica,sans-serif;line-height:1.4;padding:18px;">
-        <div style="max-width:500px;margin:auto;border:1px solid #ddd;border-radius:10px;padding:20px;">
-          <div style="text-align:center;">
-            <img src="{member['profile_pic']}" width="120" height="120" style="border-radius:50%;border:2px solid #ccc;"><br><br>
-            <h2>{member['member_name']}</h2>
-            <p style="color:gray">{member['title']}</p>
-          </div>
-          <hr>
-          <p><strong>About:</strong></p><p style="background:#fafafa;padding:10px;border-radius:6px;border:1px solid #eee;">{member['about']}</p>
-          <p><strong>Recent Activity:</strong></p><p style="background:#fafafa;padding:10px;border-radius:6px;border:1px solid #eee;">{member['recent_activity']}</p>
-          <p style="text-align:center;margin-top:20px;"><a href="/post">&larr; Back to Post simulation</a></p>
-        </div>
       </body>
     </html>
     """
